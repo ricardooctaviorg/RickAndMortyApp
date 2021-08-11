@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
 
 import { ToastController } from '@ionic/angular';
-import { MenuOpt } from '../enums/menu-opt';
+import { MenuOpt } from '../interfaces/menu-opt';
 
 
 const PATH_MAINMENU_OPTIONS       = "/assets/json/mainMenu.json";

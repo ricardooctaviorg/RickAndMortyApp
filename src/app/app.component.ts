@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MenuOpt } from './commons/enums/menu-opt';
+import { MenuOpt } from './commons/interfaces/menu-opt';
 import { UtilService } from './commons/services/util.service';
 
 const RICK_SANCHEZ_AVATAR = "https://www.gravatar.com/userimage/198148610/d44db3235d18f4fb9ba4e7b50de5f997?size=120";
