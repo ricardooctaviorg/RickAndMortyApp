@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Start",
+        "icon": "rocket",
+        "redirectTo": "/start"
+    },
+    {
+        "name": "Character Detail",
+        "icon": "planet",
+        "redirectTo": "/detail"
+    },
+    {
+        "name": "Favs",
+        "icon": "sparkles",
+        "redirectTo": "/favourites"
+    }
+]

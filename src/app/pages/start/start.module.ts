@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { StartPageRoutingModule } from './start-routing.module';
 
 import { StartPage } from './start.page';
+import { CommonsModule } from '../../commons/commons.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    StartPageRoutingModule
+    CommonModule
+    , FormsModule
+    , IonicModule
+    , StartPageRoutingModule
+    , CommonsModule
   ],
   declarations: [StartPage]
 })
