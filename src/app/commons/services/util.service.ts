@@ -5,12 +5,14 @@ import { environment } from '../../../environments/environment.prod';
 
 import { ToastController } from '@ionic/angular';
 import { MenuOpt } from '../interfaces/menu-opt';
+import { CommonCharacterIcon } from '../enums/common-character-icon.enum';
+import { StatusCharacterIcon } from '../enums/status-character-icon.enum';
 
 
 const PATH_MAINMENU_OPTIONS       = "/assets/json/mainMenu.json";
 
-//const TOAST_ICON_SUCCESS_TRUE     = CommonDeliveryIcon.SUCCESS_TRUE.toString();
-//const TOAST_ICON_SUCCESS_FALSE    = CommonDeliveryIcon.SUCCESS_FASE.toString();
+const TOAST_ICON_SUCCESS_TRUE     = CommonCharacterIcon.SUCCESS_TRUE.toString();
+const TOAST_ICON_SUCCESS_FALSE    = CommonCharacterIcon.SUCCESS_FASE.toString();
 
 const TOAST_DURATION              = 5000;
 const TOAST_TRANSLUCENT           = false;
@@ -32,6 +34,50 @@ export class UtilService {
 
   public getMainMunuOptions(){
     return this.httpClient.get<MenuOpt[]>(PATH_MAINMENU_OPTIONS);
+  }
+
+  async showChangeFav(fav: Boolean, name: string) {
+
+    var messageCurrent  : string = "";
+    var typeAlert       : string = TOAST_COLOR_SUCCESS_FALSE;
+    var iconToast       : string = TOAST_ICON_SUCCESS_FALSE;
+
+
+      typeAlert = TOAST_COLOR_SUCCESS_TRUE;
+
+      switch (fav) {
+        case true:
+          messageCurrent  = "It has been added to favorites to " + name;
+          iconToast       = "happy";
+          break;
+        case false:
+            messageCurrent  = name + " has been removed from favorites. ";
+            iconToast       = "sad";
+          break;
+      }
+
+    const toast = await this.toastController.create({
+      message         : messageCurrent
+      , duration      : TOAST_DURATION
+      , color         : typeAlert
+      , keyboardClose : TOAST_KEYBOARD_CLOSE
+      , position      : TOAST_POSITION
+      , translucent   : TOAST_TRANSLUCENT
+      , buttons       : [
+        {
+          side: 'start',
+          icon: iconToast,
+        },{
+          side: 'end',
+          text: 'CLOSE',
+          role: 'cancel',
+          handler: () => {
+            console.log('Close clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
   }
 
   

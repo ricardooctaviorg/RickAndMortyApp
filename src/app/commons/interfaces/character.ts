@@ -17,6 +17,6 @@ export interface Character {
     image       : string ;
     episode     : string[];
     url         : string ;
-    created     : Date;
-    fav?        : Boolean;   
+    created     : Date ;
+    fav?        : Boolean ;   
 }

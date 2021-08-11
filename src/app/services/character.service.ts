@@ -21,8 +21,8 @@ export class CharacterService {
 
   public getAllCharacters( page: string ): Observable<any> {
 
-    const headers = new HttpHeaders();
-      //.set('Access-Control-Allow-Origin', '*');
+    const headers = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', '*');
     
       const params = new HttpParams()
       .set('page', page);
@@ -30,7 +30,7 @@ export class CharacterService {
     const httpOptionsX =
     {
       headers
-      , params
+      ,params
     };
     return this.httpClient.get<any>(`${GETALLCHARACTERS}`, httpOptionsX);
   }

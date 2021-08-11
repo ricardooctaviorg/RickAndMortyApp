@@ -13,7 +13,7 @@
               </ion-text>
             </ion-label>
         </ion-item>
-        <ion-item [ngSwitch]="a.status" lines="none" *ngFor="let a of characters">
+        <ion-item [ngSwitch]="a.fav" lines="none" *ngFor="let a of characters">
           <ion-avatar slot="start">
             <img [src]="a.image">
           </ion-avatar>
@@ -23,7 +23,7 @@
                   <span>{{a.name | uppercase }}</span>
                 </strong>
               </ion-text>
-              <ion-text color="" class="ion-text-wrap ion-text-start">
+              <ion-text [ngSwitch]="a.status" color="" class="ion-text-wrap ion-text-start">
                 <h2 *ngSwitchCase="'Alive'">
                   <ion-icon color="success" [name]="iconAliveStatus"></ion-icon>
                   <ion-badge class="ion-margin-horizontal" color="success" >{{a.status | uppercase }}</ion-badge>
@@ -41,7 +41,8 @@
                 </h2>
               </ion-text>
             </ion-label>
-            <ion-icon *ngIf="a.fav; else elseBlock" name="star" color="dark " slot="end"></ion-icon>
+            <ion-icon *ngSwitchCase="true" name="star" color="dark " slot="end" (click)="switchFav(a.id, a.fav)"></ion-icon>
+            <ion-icon *ngSwitchCase="false" name="star-outline" color="dark " slot="end" (click)="switchFav(a.id, a.fav)"></ion-icon>
         </ion-item>
       </ion-list>
       <ion-infinite-scroll threshold="1px" (ionInfinite)="loadData($event)">
