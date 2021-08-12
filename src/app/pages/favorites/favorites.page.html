@@ -8,9 +8,32 @@
                         <ion-card class="pick-avatar" [ngClass]="{'pick-avatar-seleccionado': avatar.selected
                         , 'animate__bounceIn':avatar.selected}" (click)="selectAvatar(avatar)">
                             <ion-img  [src]="avatar.image"></ion-img>
+                            <ion-card-header>
+                                <ion-card-title>{{ avatar.name }}</ion-card-title>
+                            </ion-card-header>
                         </ion-card>
                     </ion-slide>
                 </ion-slides>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-card>
+                    <ion-card-header>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-item [ngSwitch]="avatarSelected.status" lines="none">
+                            <ion-label>Status: </ion-label>
+                            <ion-badge *ngSwitchCase="'Alive'" color="success">{{ avatarSelected.status | uppercase }}</ion-badge>
+                            <ion-badge *ngSwitchCase="'Dead'" color="danger">{{ avatarSelected.status | uppercase }}</ion-badge>
+                            <ion-badge *ngSwitchCase="'unknown'" color="medium">{{ avatarSelected.status | uppercase }}</ion-badge>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label>Species: </ion-label>
+                            <ion-badge color="warning">{{ avatarSelected.species | uppercase }}</ion-badge>
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
             </ion-col>
         </ion-row>
     </ion-grid>

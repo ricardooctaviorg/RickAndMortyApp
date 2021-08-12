@@ -15,6 +15,9 @@ export class FavoritesPage implements OnInit {
   titleDetail                   : string  = "My Favorites";
   characterFavOrigin            : any     = {};
   characterCatalogList          : Character[] = new Array();
+  avatarSelected                : Character = {
+
+  };
 
   avatarSlide = {
     slidesPerView: 1.5
@@ -25,25 +28,17 @@ export class FavoritesPage implements OnInit {
 
   ngOnInit() {
     this.characterFavOrigin = this.storageService.getCharactersFav();
-    for (const key of Object.keys(this.characterFavOrigin)) {
-      console.log(key, this.characterFavOrigin[key]);
+    for (const key of Object.keys(this.characterFavOrigin)) 
       this.characterCatalogList.push(this.characterFavOrigin[key] as Character);
   }
 
-    /*this.characterCatalogListOrigin.forEach(element => {
-      if( element.fav )
-      this.characterCatalogList.push(element);
-    });*/
-  }
-
   selectAvatar(character: Character) {
-    /*this.characterCatalogList.forEach(
+    this.characterCatalogList.forEach(
       av => {
-        av.selected = false;
-      });*/
+      av.selected = false;
+    });
     character.selected = true;
-    //this.myManagementDelivery.avatar = avatar.avatarUrl;
-    //this.avatarIdCurrent = avatar.avatarId;
+    this.avatarSelected = this.storageService.getCharacterById(character.id);
   }
 
 }
