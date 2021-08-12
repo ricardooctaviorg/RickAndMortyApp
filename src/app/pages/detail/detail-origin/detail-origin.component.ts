@@ -7,7 +7,6 @@ import { CharacterService } from '../../../services/character.service';
 import { OriginLocation } from '../../../commons/interfaces/origin-location';
 
 const TITLE   = "Origin";
-
 const UNKNOWN = "unknown";
 
 @Component({
