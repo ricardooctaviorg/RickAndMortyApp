@@ -7,6 +7,8 @@ import { ToastController } from '@ionic/angular';
 import { MenuOpt } from '../interfaces/menu-opt';
 import { CommonCharacterIcon } from '../enums/common-character-icon.enum';
 import { StatusCharacterIcon } from '../enums/status-character-icon.enum';
+import { Character } from '../interfaces/character';
+import { StorageService } from './storage.service';
 
 
 const PATH_MAINMENU_OPTIONS       = "/assets/json/mainMenu.json";
@@ -29,8 +31,11 @@ const GATEWAY_VALUE               = environment.gateway;
 })
 export class UtilService {
 
+  charactersFavsX   : any     = {};
+
   constructor(private httpClient    : HttpClient
-    , public toastController        : ToastController) { }
+    , public toastController        : ToastController
+    , private storageService        : StorageService) { }
 
   public getMainMunuOptions(){
     return this.httpClient.get<MenuOpt[]>(PATH_MAINMENU_OPTIONS);
@@ -77,6 +82,24 @@ export class UtilService {
       ]
     });
     await toast.present();
+  }
+
+  setDisableFavs(characterss: Character[]) {
+    characterss.forEach(element => {
+      element.fav = false;
+    });
+    return characterss;
+  }
+
+   applyFavs(characterss: Character[]): Character[]{
+    this.charactersFavsX = this.storageService.getCharactersFav() as any;
+    characterss.forEach(element => {
+      Object.keys(this.charactersFavsX).forEach(function(key) {
+          if( key ==  element.id)
+            element.fav = true;
+      })
+    });
+    return characterss;
   }
 
   

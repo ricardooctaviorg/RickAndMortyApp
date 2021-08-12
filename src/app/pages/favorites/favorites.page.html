@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>favorites</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header currentTitle="{{ titleDetail }}"></app-header>
 <ion-content>
-
+    <ion-grid fixed>
+        <ion-row class="ion-margin">
+            <ion-col>
+                <ion-slides [options]="avatarSlide" #aSlides>
+                    <ion-slide *ngFor="let avatar of characterCatalogList">
+                        <ion-card class="pick-avatar" [ngClass]="{'pick-avatar-seleccionado': avatar.selected
+                        , 'animate__bounceIn':avatar.selected}" (click)="selectAvatar(avatar)">
+                            <ion-img  [src]="avatar.image"></ion-img>
+                        </ion-card>
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

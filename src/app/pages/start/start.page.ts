@@ -52,28 +52,10 @@ export class StartPage implements OnInit {
           this.emptyList = true;
 
         this.charactersCurrent = data.results as Character[];
-        this.characters.push(... this.applyFavs(this.setDisableFavs(this.charactersCurrent)));
+        this.characters.push(... this.utilService.applyFavs(this.utilService.setDisableFavs(this.charactersCurrent)));
         this.storageService.setCharacters(this.characters);
       }
     );
-  }
-
-  setDisableFavs(characterss: Character[]) {
-    characterss.forEach(element => {
-      element.fav = false;
-    });
-    return characterss;
-  }
-
-   applyFavs(characterss: Character[]): Character[]{
-    this.charactersFavsX = this.storageService.getCharactersFav() as any;
-    characterss.forEach(element => {
-      Object.keys(this.charactersFavsX).forEach(function(key) {
-          if( key ==  element.id)
-            element.fav = true;
-      })
-    });
-    return characterss;
   }
 
   loadData(event) {
@@ -109,7 +91,7 @@ export class StartPage implements OnInit {
         else{
           element.fav = true;
           this.characterFav = this.storageService.getCharactersFav() as any;
-          this.characterFav[element.id] = true;
+          this.characterFav[element.id] = element;
         }
         this.storageService.setCharactersFav(this.characterFav);
         this.utilService.showChangeFav(element.fav, element.name);
