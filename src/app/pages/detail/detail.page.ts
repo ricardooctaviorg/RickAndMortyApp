@@ -13,7 +13,7 @@ export class DetailPage implements OnInit {
 
   titleDetail   : string      = "";
   countEpisodes : number      = 0;
-  character     : Character;
+  character     : Character   = {};
 
   constructor(private route                 : ActivatedRoute
               , private storageService      : StorageService
@@ -25,22 +25,19 @@ export class DetailPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        const characterId        : string         = String(params.get("id"));
-        this.character                            = this.storageService.getCharacterById(characterId);
-        this.titleDetail                          = this.character.name;
-        this.countEpisodes                        = this.character.episode.length;
-        }
+        const characterId: string = String(params.get("id"));
+        this.character = this.storageService.getCharacterById(characterId);
+      }
     );
 
+    this.titleDetail = this.character.name;
+    this.countEpisodes = this.character.episode.length;
+    this.router.navigate(['detail', this.character.id,'detailOrigin', this.character.id]);
     this.messageService.titleDetailEmitter.subscribe(
       title => {
         this.titleDetail = title;
       }
     );
-
-    this.router.navigate(['detail', this.character.id,'detailOrigin', this.character.id]);
-
-
   }
 
 }

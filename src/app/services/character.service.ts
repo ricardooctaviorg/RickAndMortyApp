@@ -25,7 +25,7 @@ export class CharacterService {
   public getAllCharacters( page: string ): Observable<any> {
 
     const headers = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', '*');
+      .set('Access-Control-Allow-Origin','*');
     
       const params = new HttpParams()
       .set('page', page);
@@ -38,7 +38,7 @@ export class CharacterService {
     return this.httpClient.get<any>(`${GETALLCHARACTERS}`, httpOptionsX);
   }
 
-  public getLocation( locationId: string ): Observable<any> {
+  public getLocation( urlString: String ): Observable<any> {
 
     const headers = new HttpHeaders();
     const params  = new HttpParams();
@@ -48,7 +48,7 @@ export class CharacterService {
       headers
       ,params
     };
-    return this.httpClient.get<any>(`${GETLOCATION}`, httpOptionsX);
+    return this.httpClient.get<any>(`${urlString}`);
   }
 
 

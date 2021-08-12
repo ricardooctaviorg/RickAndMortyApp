@@ -35,12 +35,24 @@ export class StorageService {
     return JSON.parse(this.localStorageService.getItem('charactersFav'));
   }
 
-  getCharacterById( id : string ) :Character{
+  getCharacterByIdPromise( id : string ) : Promise<Character>{
+    return new Promise<Character>(
+        resolve =>{
+          this.characters = JSON.parse(this.localStorageService.getItem('characters')) as Character[];
+          for(let a of this.characters)
+            if(a.id == id)
+              resolve(a);
+        }
+    );
+  }
+
+  getCharacterById( id : string ) : Character{
     this.characters = JSON.parse(this.localStorageService.getItem('characters')) as Character[];
     for(let a of this.characters)
-      if(a.id == id)
-        return a;
+    if(a.id == id)
+      return a;
   }
+
   /*getCharacterFavById( id : string ) :CharacterFav{
     this.charactersFavs = JSON.parse(this.localStorageService.getItem('charactersFav')) as CharacterFav[];
     for(let a of this.charactersFavs)

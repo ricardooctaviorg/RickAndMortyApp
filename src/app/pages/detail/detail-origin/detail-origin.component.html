@@ -5,8 +5,23 @@
         <ion-card-header>
           <ion-card-title>{{ character.origin.name | titlecase }}</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-          Awesome content
+        <ion-card-content *ngIf="!isUnknown">
+          <ion-item lines="none">
+            <ion-label>
+              <ion-text color="" class="ion-text-wrap ion-text-start">
+                TYPE: 
+              </ion-text>
+            </ion-label>
+            <ion-note slot="end" color="success">{{ originLocation.type | titlecase }}</ion-note>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>
+              <ion-text color="" class="ion-text-wrap ion-text-start">
+                DIMENSION:
+              </ion-text>
+            </ion-label>
+            <ion-note slot="end" color="success">{{ originLocation.dimension | titlecase }}</ion-note>
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </ion-col>

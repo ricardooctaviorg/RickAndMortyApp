@@ -67,7 +67,6 @@ export class StartPage implements OnInit {
 
    applyFavs(characterss: Character[]): Character[]{
     this.charactersFavsX = this.storageService.getCharactersFav() as any;
-    console.log("charactersFavsX", this.charactersFavsX);
     characterss.forEach(element => {
       Object.keys(this.charactersFavsX).forEach(function(key) {
           if( key ==  element.id)
@@ -78,7 +77,6 @@ export class StartPage implements OnInit {
   }
 
   loadData(event) {
-    console.log("loadData");
     setTimeout(() => {
       this.pageCurrent++;
       this.consumeData(String(this.pageCurrent));
@@ -87,7 +85,6 @@ export class StartPage implements OnInit {
   }
 
   async doRefresh(event) {
-    console.log("doRefresh");
     await this.cleanCharacters();
     setTimeout(() => {
       this.consumeData(String(this.pageCurrent));

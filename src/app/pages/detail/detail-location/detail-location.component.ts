@@ -24,8 +24,7 @@ export class DetailLocationComponent implements OnInit {
       params => {
         let idCharacter: string = String(params.get("id"));
         idCharacter = idCharacter.replace(',','');
-        console.log("idCharacter", idCharacter);
-        this.character                            = this.storageService.getCharacterById(idCharacter);
+        this.character  = this.storageService.getCharacterById(idCharacter);
         this.messageService.sendTitleDetail(TITLE);
       }
     );
