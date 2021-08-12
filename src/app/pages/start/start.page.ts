@@ -26,12 +26,13 @@ export class StartPage implements OnInit {
   pageData          : any;
   emptyList         : Boolean = false;
   
-  iconAliveStatus   : string = StatusCharacterIcon.CHARACTER_ALIEVE.toString();
-  iconDeadStatus    : string = StatusCharacterIcon.CHARACTER_DEAD.toString();
-  iconUnknownStatus : string = StatusCharacterIcon.CHARACTER_UNKNOWN.toString();
+  iconAliveStatus   : string  = StatusCharacterIcon.CHARACTER_ALIEVE.toString();
+  iconDeadStatus    : string  = StatusCharacterIcon.CHARACTER_DEAD.toString();
+  iconUnknownStatus : string  = StatusCharacterIcon.CHARACTER_UNKNOWN.toString();
 
-  characterFav      : any    = {};
-
+  characterFav      : any     = {};
+  charactersFavsX   : any     = {};
+ 
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonRefresher) ionRefresher: IonRefresher;
@@ -50,11 +51,11 @@ export class StartPage implements OnInit {
     this.characterService.getAllCharacters(page).subscribe(
       data => {
 
-        if (data.count == 0)
+        if (data.info.count == 0)
           this.emptyList = true;
 
         this.charactersCurrent = data.results as Character[];
-        this.characters.push(... this.setDisableFavs(this.charactersCurrent));
+        this.characters.push(... this.applyFavs(this.setDisableFavs(this.charactersCurrent)));
         this.storageService.setCharacters(this.characters);
       }
     );
@@ -63,6 +64,18 @@ export class StartPage implements OnInit {
   setDisableFavs(characterss: Character[]) {
     characterss.forEach(element => {
       element.fav = false;
+    });
+    return characterss;
+  }
+
+   applyFavs(characterss: Character[]): Character[]{
+    this.charactersFavsX = this.storageService.getCharactersFav() as any;
+    console.log("charactersFavsX", this.charactersFavsX);
+    characterss.forEach(element => {
+      Object.keys(this.charactersFavsX).forEach(function(key) {
+          if( key ==  element.id)
+            element.fav = true;
+      })
     });
     return characterss;
   }
@@ -92,9 +105,6 @@ export class StartPage implements OnInit {
   }
 
   switchFav(id: string, fav: Boolean) {
-
-    console.log("id", id);
-    console.log("fav", fav);
 
     this.characters.forEach(element => {
       if (element.id == id){
