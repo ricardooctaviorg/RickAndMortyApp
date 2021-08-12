@@ -1,4 +1,3 @@
-import { FavouritesPage } from '../../pages/favourites/favourites.page';
 export interface Character {
     id          : string ;
     name        : string ;
@@ -15,7 +14,7 @@ export interface Character {
         url     : string ;
     };
     image       : string ;
-    episode     : string[];
+    episode     : string[] ;
     url         : string ;
     created     : Date ;
     fav?        : Boolean ;   

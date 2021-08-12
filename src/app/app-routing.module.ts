@@ -17,8 +17,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/detail/detail.module').then( m => m.DetailPageModule)
   },
   {
-    path: 'favourites',
-    loadChildren: () => import('./pages/favourites/favourites.module').then( m => m.FavouritesPageModule)
+    path: 'favorites',
+    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
   }
 ];
 
