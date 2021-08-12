@@ -5,9 +5,7 @@ import { Character } from '../../commons/interfaces/character';
 import { IonInfiniteScroll, IonRefresher } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { UtilService } from '../../commons/services/util.service';
-import { StatusCharacter } from '../../commons/enums/status-character.enum';
 import { StatusCharacterIcon } from '../../commons/enums/status-character-icon.enum';
-import { CharacterFav } from '../../commons/interfaces/character-fav';
 
 const PAGE_SIZE = 10;
 
@@ -43,7 +41,6 @@ export class StartPage implements OnInit {
     , private utilService: UtilService) { }
 
   ngOnInit() {
-    this.storageService.setCharactersFav(this.characterFav);
     this.consumeData('1');
   }
 

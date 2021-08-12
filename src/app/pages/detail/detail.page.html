@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Detail</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header currentTitle="{{ titleDetail }}"></app-header>
 <ion-content>
-
+    <ion-tabs>
+        <ion-tab-bar color="light" slot="bottom">
+          <ion-tab-button [tab]="['detailOrigin/']">
+            <ion-icon name="information-circle"></ion-icon>
+            <ion-label>ORIGIN</ion-label>
+          </ion-tab-button>
+          <ion-tab-button [tab]="['detailLocation/']">
+            <ion-icon name="location"></ion-icon>
+            <ion-label>LOCATION</ion-label>
+          </ion-tab-button>
+          <ion-tab-button [tab]="['detailEpisodes/']">
+            <ion-icon name="receipt"></ion-icon>
+            <ion-label>EPISODES</ion-label>
+            <ion-badge color="success">100</ion-badge>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
 </ion-content>

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DetailPageRoutingModule } from './detail-routing.module';
 
 import { DetailPage } from './detail.page';
+import { CommonsModule } from '../../commons/commons.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    DetailPageRoutingModule
+    CommonModule
+    , FormsModule
+    , IonicModule
+    , DetailPageRoutingModule
+    , CommonsModule
   ],
   declarations: [DetailPage]
 })

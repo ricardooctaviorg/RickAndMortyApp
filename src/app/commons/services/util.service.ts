@@ -42,17 +42,16 @@ export class UtilService {
     var typeAlert       : string = TOAST_COLOR_SUCCESS_FALSE;
     var iconToast       : string = TOAST_ICON_SUCCESS_FALSE;
 
-
-      typeAlert = TOAST_COLOR_SUCCESS_TRUE;
-
-      switch (fav) {
+    switch (fav) {
         case true:
           messageCurrent  = "It has been added to favorites to " + name;
           iconToast       = "happy";
+          typeAlert       = TOAST_COLOR_SUCCESS_TRUE;
           break;
         case false:
             messageCurrent  = name + " has been removed from favorites. ";
             iconToast       = "sad";
+            typeAlert       = TOAST_COLOR_SUCCESS_FALSE;
           break;
       }
 
