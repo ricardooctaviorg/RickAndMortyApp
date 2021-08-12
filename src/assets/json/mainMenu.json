@@ -1,11 +1,11 @@
 [
     {
-        "name": "Start",
+        "name": "CHARACTERS",
         "icon": "rocket",
         "redirectTo": "/start"
     },
     {
-        "name": "Favs",
+        "name": "FAVS",
         "icon": "sparkles",
         "redirectTo": "/favourites"
     }

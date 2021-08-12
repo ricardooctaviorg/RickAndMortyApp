@@ -6,10 +6,13 @@ import { Observable } from 'rxjs';
 
 const GATEWAY_VALUE         = environment.gateway;
 const CHARACTER_RESOURCE    = environment.characterResource;
+const LOCATION_RESOURCE     = environment.locationResource;
 
-const GETALLCHARACTERS 
-= GATEWAY_VALUE
+const GETALLCHARACTERS  = GATEWAY_VALUE
   + CHARACTER_RESOURCE;
+
+const GETLOCATION       = GATEWAY_VALUE
+  + LOCATION_RESOURCE;
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +37,19 @@ export class CharacterService {
     };
     return this.httpClient.get<any>(`${GETALLCHARACTERS}`, httpOptionsX);
   }
+
+  public getLocation( locationId: string ): Observable<any> {
+
+    const headers = new HttpHeaders();
+    const params  = new HttpParams();
+
+    const httpOptionsX =
+    {
+      headers
+      ,params
+    };
+    return this.httpClient.get<any>(`${GETLOCATION}`, httpOptionsX);
+  }
+
+
 }

@@ -8,6 +8,9 @@ import { DetailPageRoutingModule } from './detail-routing.module';
 
 import { DetailPage } from './detail.page';
 import { CommonsModule } from '../../commons/commons.module';
+import { DetailOriginComponent } from './detail-origin/detail-origin.component';
+import { DetailLocationComponent } from './detail-location/detail-location.component';
+import { DetailEpisodesComponent } from './detail-episodes/detail-episodes.component';
 
 @NgModule({
   imports: [
@@ -17,6 +20,9 @@ import { CommonsModule } from '../../commons/commons.module';
     , DetailPageRoutingModule
     , CommonsModule
   ],
-  declarations: [DetailPage]
+  declarations: [DetailPage
+  , DetailOriginComponent
+  , DetailLocationComponent
+  , DetailEpisodesComponent]
 })
 export class DetailPageModule {}

@@ -1,3 +1,11 @@
-<p>
-  detail-location works!
-</p>
+<ion-grid fixed>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-align-self-center">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ character.location.name | titlecase }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

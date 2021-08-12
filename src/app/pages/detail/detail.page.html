@@ -1,20 +1,35 @@
 <app-header currentTitle="{{ titleDetail }}"></app-header>
+<ion-grid fixed>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8" class="ion-align-self-center">
+      <ion-card>
+        <img class="imgResize" [src]="character.image" />
+        <ion-card-header>
+          <ion-card-subtitle>{{ character.species | titlecase }} - {{ character.status | titlecase }}</ion-card-subtitle>
+          <ion-card-title>{{ character.name }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+    <ion-col size="2"></ion-col>
+  </ion-row>
+</ion-grid>
 <ion-content>
-    <ion-tabs>
-        <ion-tab-bar color="light" slot="bottom">
-          <ion-tab-button [tab]="['detailOrigin/']">
-            <ion-icon name="information-circle"></ion-icon>
-            <ion-label>ORIGIN</ion-label>
-          </ion-tab-button>
-          <ion-tab-button [tab]="['detailLocation/']">
-            <ion-icon name="location"></ion-icon>
-            <ion-label>LOCATION</ion-label>
-          </ion-tab-button>
-          <ion-tab-button [tab]="['detailEpisodes/']">
-            <ion-icon name="receipt"></ion-icon>
-            <ion-label>EPISODES</ion-label>
-            <ion-badge color="success">100</ion-badge>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
+  <ion-tabs>
+    <ion-tab-bar color="light" slot="bottom">
+      <ion-tab-button [tab]="['detailOrigin/', character.id ]">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>ORIGIN</ion-label>
+      </ion-tab-button>
+      <ion-tab-button [tab]="['detailLocation/', character.id ]">
+        <ion-icon name="location"></ion-icon>
+        <ion-label>LOCATION</ion-label>
+      </ion-tab-button>
+      <ion-tab-button [tab]="['detailEpisodes/', character.id ]">
+        <ion-icon name="receipt"></ion-icon>
+        <ion-label>EPISODES</ion-label>
+        <ion-badge color="success">{{countEpisodes}}</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
