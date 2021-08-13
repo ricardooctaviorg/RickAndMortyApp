@@ -1,61 +1,68 @@
 <app-header-menu titleMain="Rick And Morty Characters"></app-header-menu>
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Update Characters"
-      refreshingSpinner="circular" refreshingText="Updating Characters">
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-list [ngSwitch]="emptyList">
-    <ion-item *ngSwitchCase="true" lines="none">
-      <ion-label>
-        <ion-text color="medium" class="ion-align-items-center ion-justify-content-center ion-text-center">
-          <h3>NO CHARACTERS!</h3>
-        </ion-text>
-      </ion-label>
-    </ion-item>
-    <ion-item-sliding [ngSwitch]="a.fav" *ngFor="let a of characters">
-      <ion-item lines="none">
-        <ion-avatar slot="start" [routerLink]="['/detail', a.id]">
-          <img [src]="a.image">
-        </ion-avatar>
-        <ion-label>
-          <ion-text color="tertiary" class="ion-text-wrap ion-text-start">
-            <strong>
-              <span>{{a.name | uppercase }}</span>
-            </strong>
-          </ion-text>
-          <ion-text [ngSwitch]="a.status" color="" class="ion-text-wrap ion-text-start">
-            <h2 *ngSwitchCase="'Alive'">
-              <ion-icon color="success" [name]="iconAliveStatus"></ion-icon>
-              <ion-badge class="ion-margin-horizontal" color="success">{{a.status | uppercase }}</ion-badge>
-              <ion-badge color="warning">{{a.species | uppercase }}</ion-badge>
-            </h2>
-            <h2 *ngSwitchCase="'Dead'">
-              <ion-icon color="danger" [name]="iconDeadStatus"></ion-icon>
-              <ion-badge class="ion-margin-horizontal" color="danger">{{a.status | uppercase }}</ion-badge>
-              <ion-badge color="warning">{{a.species | uppercase }}</ion-badge>
-            </h2>
-            <h2 *ngSwitchCase="'unknown'">
-              <ion-icon color="medium" [name]="iconUnknownStatus"></ion-icon>
-              <ion-badge class="ion-margin-horizontal" color="medium">{{a.status | uppercase }}</ion-badge>
-              <ion-badge color="warning">{{a.species | uppercase }}</ion-badge>
-            </h2>
-          </ion-text>
-        </ion-label>
-        <ion-icon *ngSwitchCase="true" name="star" color="dark " slot="end" (click)="switchFav(a.id, a.fav)" class="animate__heartBeat"></ion-icon>
-        <ion-icon *ngSwitchCase="false" name="star-outline" color="dark " slot="end" (click)="switchFav(a.id, a.fav)" class="animate__heartBeat">
-        </ion-icon>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option icon="bookmark-outline" slot="icon-only" color="tertiary" >
-          <ion-icon slot="icon-only" name="arrow-forward-outline" (click)="sendToDetail(a.id)"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-  </ion-list>
-  <ion-infinite-scroll threshold="1px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Consulting Characters">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center" >
+        <ion-col size="12" class="ion-align-self-center ion-padding-vertical">
+          <ion-card >
+            <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+              <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Update Characters"
+                refreshingSpinner="circular" refreshingText="Updating Characters">
+              </ion-refresher-content>
+            </ion-refresher>
+            <ion-list [ngSwitch]="emptyList">
+              <ion-item *ngSwitchCase="true" lines="none">
+                <ion-label>
+                  <ion-text color="medium" class="ion-align-items-center ion-justify-content-center ion-text-center">
+                    <h3>NO CHARACTERS!</h3>
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+              <ion-item-sliding [ngSwitch]="a.fav" *ngFor="let a of characters">
+                <ion-item lines="none">
+                  <ion-avatar slot="start" [routerLink]="['/detail', a.id]">
+                    <img [src]="a.image">
+                  </ion-avatar>
+                  <ion-label>
+                    <ion-text color="tertiary" class="ion-text-wrap ion-text-start">
+                      <strong>
+                        <span>{{a.name | uppercase }}</span>
+                      </strong>
+                    </ion-text>
+                    <ion-text [ngSwitch]="a.status" color="" class="ion-text-wrap ion-text-start">
+                      <h2 *ngSwitchCase="'Alive'">
+                        <ion-icon color="success" [name]="iconAliveStatus"></ion-icon>
+                        <ion-badge class="ion-margin-horizontal" color="success">{{a.status | uppercase }}</ion-badge>
+                        <ion-badge color="warning">{{a.species | uppercase }}</ion-badge>
+                      </h2>
+                      <h2 *ngSwitchCase="'Dead'">
+                        <ion-icon color="danger" [name]="iconDeadStatus"></ion-icon>
+                        <ion-badge class="ion-margin-horizontal" color="danger">{{a.status | uppercase }}</ion-badge>
+                        <ion-badge color="warning">{{a.species | uppercase }}</ion-badge>
+                      </h2>
+                      <h2 *ngSwitchCase="'unknown'">
+                        <ion-icon color="medium" [name]="iconUnknownStatus"></ion-icon>
+                        <ion-badge class="ion-margin-horizontal" color="medium">{{a.status | uppercase }}</ion-badge>
+                        <ion-badge color="warning">{{a.species | uppercase }}</ion-badge>
+                      </h2>
+                    </ion-text>
+                  </ion-label>
+                  <ion-icon *ngSwitchCase="true" name="star" color="dark " slot="end" (click)="switchFav(a.id, a.fav)" class="animate__heartBeat"></ion-icon>
+                  <ion-icon *ngSwitchCase="false" name="star-outline" color="dark " slot="end" (click)="switchFav(a.id, a.fav)" class="animate__heartBeat">
+                  </ion-icon>
+                </ion-item>
+                <ion-item-options side="end">
+                  <ion-item-option icon="bookmark-outline" slot="icon-only" color="tertiary" >
+                    <ion-icon slot="icon-only" name="arrow-forward-outline" (click)="sendToDetail(a.id)"></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+            <ion-infinite-scroll threshold="1px" (ionInfinite)="loadData($event)">
+              <ion-infinite-scroll-content loadingSpinner="circular" loadingText="Consulting Characters">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+          </ion-card>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

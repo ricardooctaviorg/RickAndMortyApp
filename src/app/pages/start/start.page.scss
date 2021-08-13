@@ -11,3 +11,16 @@ ion-toolbar, ion-header {
     transition: opacity 0.5s linear;
     opacity: 1 !important;
 }
+
+.my-ion-list {
+    max-height: 700px;
+    overflow-y: scroll;
+  }
+
+.top{
+    margin-top      : 200px !important;
+}
+
+.bootom{
+    margin-bottom   : 200px !important;
+}
