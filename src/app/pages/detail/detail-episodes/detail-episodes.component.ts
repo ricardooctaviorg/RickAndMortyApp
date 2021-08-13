@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../../../commons/services/storage.service';
 import { MessageService } from '../../../commons/services/message.service';
 import { Character } from '../../../commons/interfaces/character';
+import { Observable } from 'rxjs';
+import { CharacterService } from '../../../services/character.service';
 
 const TITLE = "Episodes";
 
@@ -14,10 +16,13 @@ const TITLE = "Episodes";
 export class DetailEpisodesComponent implements OnInit {
 
   character : Character;
+  episodes  : Observable<any>[] = new Array();
+  episodess : any[]             = new Array();
 
   constructor(private storageService  : StorageService
     , private route                   : ActivatedRoute
-    , private messageService          : MessageService) { }
+    , private messageService          : MessageService
+    , private characterService        : CharacterService) { }
 
   ngOnInit() {
 
@@ -25,12 +30,22 @@ export class DetailEpisodesComponent implements OnInit {
       params => {
         let idCharacter: string = String(params.get("id"));
         idCharacter = idCharacter.replace(',','');
-        console.log("idCharacter", idCharacter);
-        //this.character                            = this.storageService.getCharacterById(idCharacter);
+        this.character                            = this.storageService.getCharacterById(idCharacter);
         this.messageService.sendTitleDetail(TITLE);
+        this.character.episode.forEach(element => {
+          this.episodes.push(this.characterService.getLocation(element.toString()));
+        });
+
+        this.episodes.forEach(element => {
+          element.subscribe(
+            data =>{
+              this.episodess.push(data);
+            }
+          );
+        });
+
       }
     );
-
   }
 
 }

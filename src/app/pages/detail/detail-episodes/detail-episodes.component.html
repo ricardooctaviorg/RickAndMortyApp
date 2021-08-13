@@ -1,2 +1,28 @@
 <ion-content>
+    <ion-grid fixed>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12" class="ion-align-self-center">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title></ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                  <ion-item lines="none" *ngFor="let item of episodess">
+                        <ion-badge slot="start" color="warning">{{ item.id }}</ion-badge>
+                        <ion-label>
+                          <ion-text color="medium" class="ion-text-wrap ion-text-start">
+                            <strong>
+                              <span>{{item.name| uppercase }}</span>
+                            </strong>
+                          </ion-text>
+                          <ion-text color="primary">
+                            <h3><span>{{item.air_date| uppercase }}</span></h3>
+                          </ion-text>
+                        </ion-label>
+                  </ion-item>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 </ion-content>
