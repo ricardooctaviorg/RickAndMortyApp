@@ -42,13 +42,13 @@
             </h2>
           </ion-text>
         </ion-label>
-        <ion-icon *ngSwitchCase="true" name="star" color="dark " slot="end" (click)="switchFav(a.id, a.fav)"></ion-icon>
-        <ion-icon *ngSwitchCase="false" name="star-outline" color="dark " slot="end" (click)="switchFav(a.id, a.fav)">
+        <ion-icon *ngSwitchCase="true" name="star" color="dark " slot="end" (click)="switchFav(a.id, a.fav)" class="animate__heartBeat"></ion-icon>
+        <ion-icon *ngSwitchCase="false" name="star-outline" color="dark " slot="end" (click)="switchFav(a.id, a.fav)" class="animate__heartBeat">
         </ion-icon>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option icon="bookmark-outline" slot="icon-only" color="tertiary" >
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+          <ion-icon slot="icon-only" name="arrow-forward-outline" (click)="sendToDetail(a.id)"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>

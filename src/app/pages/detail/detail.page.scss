@@ -1,4 +1,7 @@
 .imgResize{
-    width: auto !important;
-    height: auto !important;
+    max-width   : 100% !important;
+    height      : auto !important;
+    display     : block !important;
+    margin-left : auto !important;
+    margin-right: auto !important;
 }

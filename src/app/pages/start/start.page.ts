@@ -3,7 +3,7 @@ import { CharacterService } from '../../services/character.service';
 import { StorageService } from '../../commons/services/storage.service';
 import { Character } from '../../commons/interfaces/character';
 import { IonInfiniteScroll, IonRefresher } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../../commons/services/util.service';
 import { StatusCharacterIcon } from '../../commons/enums/status-character-icon.enum';
 
@@ -35,10 +35,10 @@ export class StartPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonRefresher) ionRefresher: IonRefresher;
 
-  constructor(private characterService: CharacterService
-    , private storageService: StorageService
-    , private route: ActivatedRoute
-    , private utilService: UtilService) { }
+  constructor(private characterService  : CharacterService
+    , private storageService            : StorageService
+    , private router                    : Router
+    , private utilService               : UtilService) { }
 
   ngOnInit() {
     this.consumeData('1');
@@ -99,4 +99,9 @@ export class StartPage implements OnInit {
 
     });
   }
+
+  sendToDetail(id: string){
+    this.router.navigate(['detail', id,'detailOrigin', id]);
+  }
+
 }

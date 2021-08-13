@@ -1,3 +1,13 @@
 ion-toolbar, ion-header {
     --min-height: 210px;
-   }
+}
+
+.pick-avatar {
+    width: max-content;
+    opacity: 0.3;
+}
+
+.pick-avatar-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+}
