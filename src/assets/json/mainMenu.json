@@ -5,7 +5,7 @@
         "redirectTo": "/start"
     },
     {
-        "name": "MY FAVOURITES",
+        "name": "MY FAVORITES",
         "icon": "sparkles",
         "redirectTo": "/favorites"
     }

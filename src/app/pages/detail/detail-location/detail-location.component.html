@@ -25,6 +25,31 @@
             </ion-item>
           </ion-card-content>
         </ion-card>
+        <ion-card *ngIf="!isUnknown">
+          <ion-card-header>
+            <ion-item>
+              <ion-card-title>RESIDENTS</ion-card-title>
+              <ion-badge slot="end" color="primary" mode="ios">{{residentsLength}}</ion-badge>
+            </ion-item>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none" *ngFor="let item of residentss">
+              <ion-avatar slot="start">
+                <img [src]="item.image" />
+              </ion-avatar>
+              <ion-label>
+                <ion-text color="medium" class="ion-text-wrap ion-text-start">
+                  <strong>
+                    <span>{{item.name| uppercase }}</span>
+                  </strong>
+                </ion-text>
+                <ion-text color="primary">
+                  <h3>{{item.species}} - {{item.status}}</h3>
+                </ion-text>
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>

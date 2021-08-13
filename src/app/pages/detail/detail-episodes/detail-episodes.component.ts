@@ -28,6 +28,8 @@ export class DetailEpisodesComponent implements OnInit {
 
     this.route.paramMap.subscribe(
       params => {
+        this.episodes   = new Array();
+        this.episodess  = new Array();
         let idCharacter: string = String(params.get("id"));
         idCharacter = idCharacter.replace(',','');
         this.character                            = this.storageService.getCharacterById(idCharacter);
